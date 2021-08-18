@@ -1,0 +1,26 @@
+#!/bin/bash
+
+if [[ "$1" == "" ]]
+	then
+	echo "Usage: cinstall <YYYYMMDD>"
+	exit 1
+fi
+
+export PATH=/usr/local/cuda/bin:$PATH
+
+EXEJAR=cryptostat_${1}.jar
+CSRCJAR=cryptostatcsrc_${1}.jar
+
+echo "Extracting C sources..."
+jar xf $CSRCJAR
+
+echo "Compiling C/CUDA source files..."
+bash ccompile
+
+echo "Updating JAR file..."
+cd lib
+jar uf ../$EXEJAR `find . -name '*.cubin'` `find . -name '*.ptx'`
+
+echo "Cleaning up..."
+cd ..
+rm -fr lib ccompile META-INF

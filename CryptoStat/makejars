@@ -1,0 +1,37 @@
+#!/bin/bash
+
+if [[ "$1" == "" ]]
+	then
+	echo "Usage: makejars <YYYYMMDD>"
+	exit 1
+fi
+
+EXEJAR=cryptostat_${1}.jar
+SRCJAR=cryptostatsrc_${1}.jar
+CSRCJAR=cryptostatcsrc_${1}.jar
+
+cd ..
+jar cf CryptoStat/$SRCJAR \
+	CryptoStat/.bashrc \
+	CryptoStat/*compile \
+	CryptoStat/doc \
+	CryptoStat/lib \
+	CryptoStat/makejars \
+	CryptoStat/makerelease \
+	CryptoStat/runjavadoc \
+	CryptoStat/scripts \
+
+
+cd CryptoStat/lib
+jar cf ../$EXEJAR \
+	`find . -name '*.class'` \
+	`find . -name '*.dat'` \
+	`find . -name '*.ptx'` \
+
+
+cd ..
+jar cf $CSRCJAR \
+	ccompile \
+	`find . -name '*.cu'` \
+
+

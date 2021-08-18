@@ -1,0 +1,12 @@
+#!/bin/bash
+
+echo "Compiling C/CUDA source files..."
+
+echo "cd $PJ2_HOME/lib"
+(cd $PJ2_HOME/lib; bash ccompile)
+
+echo "cd $PJ2_HOME/lib/rit/gpu/example"
+(cd $PJ2_HOME/lib/edu/rit/gpu/example; bash ccompile)
+
+echo "cd $PJ2_HOME/lib/rit/gpu/test"
+(cd $PJ2_HOME/lib/edu/rit/gpu/test; bash ccompile)

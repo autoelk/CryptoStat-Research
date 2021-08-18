@@ -1,0 +1,65 @@
+#!/bin/bash
+
+echo "Compiling CUDA source files in $CRST_HOME/lib/edu/rit/crst/..."
+cd $CRST_HOME/lib/edu/rit/crst/
+rm -f *.ptx
+echo "Avalanche.cu"
+nvcc --compiler-bindir=$GCCBINDIR -ptx -arch compute_30 -o Avalanche.ptx Avalanche.cu
+echo "Difference.cu"
+nvcc --compiler-bindir=$GCCBINDIR -ptx -arch compute_30 -o Difference.ptx Difference.cu
+echo "Direct.cu"
+nvcc --compiler-bindir=$GCCBINDIR -ptx -arch compute_30 -o Direct.ptx Direct.cu
+
+echo "Compiling CUDA source files in $CRST_HOME/lib/edu/rit/aes/..."
+cd $CRST_HOME/lib/edu/rit/aes/
+rm -f *.ptx
+echo "AES128.cu"
+nvcc --compiler-bindir=$GCCBINDIR -ptx -arch compute_30 -o AES128.ptx AES128.cu
+echo "AES192.cu"
+nvcc --compiler-bindir=$GCCBINDIR -ptx -arch compute_30 -o AES192.ptx AES192.cu
+echo "AES256.cu"
+nvcc --compiler-bindir=$GCCBINDIR -ptx -arch compute_30 -o AES256.ptx AES256.cu
+
+echo "Compiling CUDA source files in $CRST_HOME/lib/edu/rit/sha1/..."
+cd $CRST_HOME/lib/edu/rit/sha1/
+rm -f *.ptx
+echo "SHA1.cu"
+nvcc --compiler-bindir=$GCCBINDIR -ptx -arch compute_30 -o SHA1.ptx SHA1.cu
+
+echo "Compiling CUDA source files in $CRST_HOME/lib/edu/rit/sha2/..."
+cd $CRST_HOME/lib/edu/rit/sha2/
+rm -f *.ptx
+echo "SHA224.cu"
+nvcc --compiler-bindir=$GCCBINDIR -ptx -arch compute_30 -o SHA224.ptx SHA224.cu
+echo "SHA256.cu"
+nvcc --compiler-bindir=$GCCBINDIR -ptx -arch compute_30 -o SHA256.ptx SHA256.cu
+echo "SHA384.cu"
+nvcc --compiler-bindir=$GCCBINDIR -ptx -arch compute_30 -o SHA384.ptx SHA384.cu
+echo "SHA512.cu"
+nvcc --compiler-bindir=$GCCBINDIR -ptx -arch compute_30 -o SHA512.ptx SHA512.cu
+echo "SHA512_224.cu"
+nvcc --compiler-bindir=$GCCBINDIR -ptx -arch compute_30 -o SHA512_224.ptx SHA512_224.cu
+echo "SHA512_256.cu"
+nvcc --compiler-bindir=$GCCBINDIR -ptx -arch compute_30 -o SHA512_256.ptx SHA512_256.cu
+
+echo "Compiling CUDA source files in $CRST_HOME/lib/edu/rit/sha3/..."
+cd $CRST_HOME/lib/edu/rit/sha3/
+rm -f *.ptx
+echo "SHA3_224.cu"
+nvcc --compiler-bindir=$GCCBINDIR -ptx -arch compute_30 -o SHA3_224.ptx SHA3_224.cu
+echo "SHA3_256.cu"
+nvcc --compiler-bindir=$GCCBINDIR -ptx -arch compute_30 -o SHA3_256.ptx SHA3_256.cu
+echo "SHA3_384.cu"
+nvcc --compiler-bindir=$GCCBINDIR -ptx -arch compute_30 -o SHA3_384.ptx SHA3_384.cu
+echo "SHA3_512.cu"
+nvcc --compiler-bindir=$GCCBINDIR -ptx -arch compute_30 -o SHA3_512.ptx SHA3_512.cu
+echo "SHAKE128.cu"
+nvcc --compiler-bindir=$GCCBINDIR -ptx -arch compute_30 -o SHAKE128.ptx SHAKE128.cu
+echo "SHAKE256.cu"
+nvcc --compiler-bindir=$GCCBINDIR -ptx -arch compute_30 -o SHAKE256.ptx SHAKE256.cu
+
+echo "Compiling CUDA source files in $CRST_HOME/lib/edu/rit/ctrl/ ... "
+cd $CRST_HOME/lib/edu/rit/ctrl/
+rm -f *.ptx
+echo "Zeros.cu"
+nvcc --compiler-bindir=$GCCBINDIR -ptx -arch compute_30 -o Zeros.ptx Zeros.cu

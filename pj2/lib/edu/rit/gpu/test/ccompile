@@ -1,0 +1,23 @@
+#!/bin/bash
+
+if [[ "$GCCBINDIR" == "" ]]
+	then
+	GCCBINDIR=/var/tmp/parajava/pj2/bin
+	fi
+
+rm -f *.ptx
+
+echo "nvcc --compiler-bindir=$GCCBINDIR --ptx Test01.cu"
+nvcc --compiler-bindir=$GCCBINDIR --ptx Test01.cu
+
+echo "nvcc --compiler-bindir=$GCCBINDIR --ptx Test02.cu"
+nvcc --compiler-bindir=$GCCBINDIR --ptx Test02.cu
+
+echo "nvcc --compiler-bindir=$GCCBINDIR --ptx Test03.cu"
+nvcc --compiler-bindir=$GCCBINDIR --ptx Test03.cu
+
+echo "nvcc --compiler-bindir=$GCCBINDIR --ptx Test04.cu"
+nvcc --compiler-bindir=$GCCBINDIR --ptx Test04.cu
+
+echo "nvcc --compiler-bindir=$GCCBINDIR --ptx Test06.cu"
+nvcc --compiler-bindir=$GCCBINDIR --ptx Test06.cu

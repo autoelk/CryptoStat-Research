@@ -1,0 +1,32 @@
+#!/bin/bash
+
+if [[ "$GCCBINDIR" == "" ]]
+	then
+	GCCBINDIR=/var/tmp/parajava/pj2/bin
+	fi
+
+rm -f *.ptx
+
+echo "nvcc --compiler-bindir=$GCCBINDIR -ptx -arch compute_30 -o OuterProductGpu.ptx OuterProductGpu.cu"
+nvcc --compiler-bindir=$GCCBINDIR -ptx -arch compute_30 -o OuterProductGpu.ptx OuterProductGpu.cu
+
+echo "nvcc --compiler-bindir=$GCCBINDIR -ptx -arch compute_30 -o PiGpu.ptx PiGpu.cu"
+nvcc --compiler-bindir=$GCCBINDIR -ptx -arch compute_30 -o PiGpu.ptx PiGpu.cu
+
+echo "nvcc --compiler-bindir=$GCCBINDIR -ptx -arch compute_30 -o Powers.ptx Powers.cu"
+nvcc --compiler-bindir=$GCCBINDIR -ptx -arch compute_30 -o Powers.ptx Powers.cu
+
+echo "nvcc --compiler-bindir=$GCCBINDIR -ptx -arch compute_30 -o ZombieGpu.ptx ZombieGpu.cu"
+nvcc --compiler-bindir=$GCCBINDIR -ptx -arch compute_30 -o ZombieGpu.ptx ZombieGpu.cu
+
+echo "nvcc --compiler-bindir=$GCCBINDIR -ptx -arch compute_30 -o ZombieGpu2.ptx ZombieGpu2.cu"
+nvcc --compiler-bindir=$GCCBINDIR -ptx -arch compute_30 -o ZombieGpu2.ptx ZombieGpu2.cu
+
+echo "nvcc --compiler-bindir=$GCCBINDIR -ptx -arch compute_30 -o WalkSackGpu.ptx WalkSackGpu.cu"
+nvcc --compiler-bindir=$GCCBINDIR -ptx -arch compute_30 -o WalkSackGpu.ptx WalkSackGpu.cu
+
+echo "nvcc --compiler-bindir=$GCCBINDIR -ptx -arch compute_30 -o KnapsackExhGpu.ptx KnapsackExhGpu.cu"
+nvcc --compiler-bindir=$GCCBINDIR -ptx -arch compute_30 -o KnapsackExhGpu.ptx KnapsackExhGpu.cu
+
+echo "nvcc --compiler-bindir=$GCCBINDIR -ptx -arch compute_30 -o KnapsackBnbGpu.ptx KnapsackBnbGpu.cu"
+nvcc --compiler-bindir=$GCCBINDIR -ptx -arch compute_30 -o KnapsackBnbGpu.ptx KnapsackBnbGpu.cu

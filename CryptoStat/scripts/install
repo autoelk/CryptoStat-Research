@@ -1,0 +1,25 @@
+#!/bin/bash
+
+if [[ "$1" == "" ]]
+	then
+	echo "Usage: install YYYYMMDD"
+	exit 1
+fi
+
+JAR=cryptostat_${1}.jar
+if [[ ! -e $JAR ]]
+	then
+	echo "install: $JAR does not exist"
+	exit 1
+fi
+
+for F in *.jar
+	do
+	if [[ "$F" != "$JAR" ]]
+		then
+		rm $F
+	fi
+done
+ln $JAR cryptostat.jar
+chmod 644 $JAR
+ls -l *.jar

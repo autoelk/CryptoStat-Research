@@ -1,0 +1,465 @@
+<HTML>
+<HEAD>
+</HEAD>
+<BODY>
+
+<P>
+<B>CryptoStat</B> is a Java program and class library
+for analyzing the randomness of cryptographic functions
+such as block ciphers, stream ciphers,
+authenticated ciphers,
+hash functions,
+and message authentication codes (MACs).
+A cryptographic function is supposed to perform
+a random mapping from its inputs to its outputs.
+CryptoStat samples a cryptographic function's outputs
+for various inputs
+and performs odds ratio tests
+for the hypotheses that the outputs are random or are nonrandom,
+for various definitions of randomness.
+
+<P>
+CryptoStat's main programs,
+classes <A HREF="Analyze.html">Analyze</A>
+and <A HREF="AnalyzeSweep.html">AnalyzeSweep</A>,
+are parallel programs
+designed to work on a CUDA-capable GPU accelerated node.
+
+<P>
+The CryptoStat Library
+was developed by Professor Alan Kaminsky
+in the Department of Computer Science
+at the Rochester Institute of Technology.
+Professor Kaminsky's students
+Darshan Gandhi,
+Himanshu Kale,
+Vinayak Sasikumar,
+William Smith,
+and Jessica Sorrell
+contributed to earlier versions
+of the CryptoStat Library.
+
+<P>
+<A HREF="#classes">Classes and Interfaces</A>
+<BR><A HREF="#requirements">System Requirements</A>
+<BR><A HREF="#installation">Installation</A>
+<BR><A HREF="#usage">Usage</A>
+<BR><A HREF="#license">License</A>
+<BR><A HREF="#history">Revision History</A>
+
+<P>
+<HR>
+<A NAME="classes"><H2>Classes and Interfaces</H2></A>
+
+<P>
+<B>Analysis main programs</B>
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class <A HREF="Analyze.html">Analyze</A>
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class <A HREF="AnalyzeSweep.html">AnalyzeSweep</A>
+
+<P>
+<B>GPU computational kernel base class</B>
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class <A HREF="edu/rit/crst/Computation.html">Computation</A>
+
+<P>
+<B>Cryptographic function objects</B>
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class <A HREF="edu/rit/crst/Function.html">Function</A>
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class <A HREF="edu/rit/aes/AESBase.html">AESBase</A>
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class <A HREF="edu/rit/aes/AES128.html">AES128</A>
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class <A HREF="edu/rit/aes/AES192.html">AES192</A>
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class <A HREF="edu/rit/aes/AES256.html">AES256</A>
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class <A HREF="edu/rit/sha1/SHA1.html">SHA1</A>
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class <A HREF="edu/rit/sha2/SHA256Base.html">SHA256Base</A>
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class <A HREF="edu/rit/sha2/SHA224.html">SHA224</A>
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class <A HREF="edu/rit/sha2/SHA256.html">SHA256</A>
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class <A HREF="edu/rit/sha2/SHA512Base.html">SHA512Base</A>
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class <A HREF="edu/rit/sha2/SHA384.html">SHA384</A>
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class <A HREF="edu/rit/sha2/SHA512.html">SHA512</A>
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class <A HREF="edu/rit/sha2/SHA512_224.html">SHA512_224</A>
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class <A HREF="edu/rit/sha2/SHA512_256.html">SHA512_256</A>
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class <A HREF="edu/rit/sha3/SHA3Base.html">SHA3Base</A>
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class <A HREF="edu/rit/sha3/SHA3_224.html">SHA3_224</A>
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class <A HREF="edu/rit/sha3/SHA3_256.html">SHA3_256</A>
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class <A HREF="edu/rit/sha3/SHA3_384.html">SHA3_384</A>
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class <A HREF="edu/rit/sha3/SHA3_512.html">SHA3_512</A>
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class <A HREF="edu/rit/sha3/SHAKE128.html">SHAKE128</A>
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class <A HREF="edu/rit/sha3/SHAKE256.html">SHAKE256</A>
+
+<P>
+<B>Input generator objects</B>
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class <A HREF="edu/rit/crst/Generator.html">Generator</A>
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class <A HREF="edu/rit/crst/CombiningGenerator.html">CombiningGenerator</A>
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class <A HREF="edu/rit/crst/Concatenate.html">Concatenate</A>
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class <A HREF="edu/rit/crst/Interleave.html">Interleave</A>
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class <A HREF="edu/rit/crst/Paste.html">Paste</A>
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class <A HREF="edu/rit/crst/Gray.html">Gray</A>
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class <A HREF="edu/rit/crst/OneOff.html">OneOff</A>
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class <A HREF="edu/rit/crst/Rand.html">Rand</A>
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class <A HREF="edu/rit/crst/Seq.html">Seq</A>
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class <A HREF="edu/rit/crst/Single.html">Single</A>
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class <A HREF="edu/rit/crst/TransformGenerator.html">TransformGenerator</A>
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class <A HREF="edu/rit/crst/Add.html">Add</A>
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class <A HREF="edu/rit/crst/Complement.html">Complement</A>
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class <A HREF="edu/rit/crst/Permute.html">Permute</A>
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class <A HREF="edu/rit/crst/Shift.html">Shift</A>
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class <A HREF="edu/rit/crst/Xor.html">Xor</A>
+
+<P>
+<B>Odds ratio test objects</B>
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class <A HREF="edu/rit/crst/Test.html">Test</A>
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class <A HREF="edu/rit/crst/Avalanche.html">Avalanche</A>
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class <A HREF="edu/rit/crst/Difference.html">Difference</A>
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class <A HREF="edu/rit/crst/Direct.html">Direct</A>
+
+<P>
+<B>Bit group objects</B>
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class <A HREF="edu/rit/crst/BitGroup.html">BitGroup</A>
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class <A HREF="edu/rit/crst/Adjacent.html">Adjacent</A>
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class <A HREF="edu/rit/crst/Scattered.html">Scattered</A>
+
+<P>
+<B>Utility classes</B>
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class <A HREF="edu/rit/util/BigInt.html">BigInt</A>
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class <A HREF="edu/rit/util/GpuBigIntArray.html">GpuBigIntArray</A>
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class <A HREF="edu/rit/util/GpuBigIntArray2D.html">GpuBigIntArray2D</A>
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class <A HREF="edu/rit/util/GpuBigIntArray3D.html">GpuBigIntArray3D</A>
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class <A HREF="edu/rit/crst/Version.html">Version</A>
+
+<P>
+<B>Debugging main programs</B>
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class <A HREF="Eval.html">Eval</A>
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class <A HREF="Evaluate.html">Evaluate</A>
+
+<P>
+<HR>
+<A NAME="requirements"><H2>System Requirements</H2></A>
+
+<P>
+The CryptoStat Library requires the following software packages:
+<P>
+&nbsp;&nbsp;&bull;&nbsp;&nbsp;Parallel Java 2 Library
+version 22-Feb-2018 or later &mdash;
+<A HREF="http://www.cs.rit.edu/~ark/pj2.shtml" TARGET="_top">http://www.cs.rit.edu/~ark/pj2.shtml</A>
+<BR>
+&nbsp;&nbsp;&bull;&nbsp;&nbsp;Nvidia CUDA Toolkit version 5.5 or later
+
+<P>
+<HR>
+<A NAME="installation"><H2>Installation</H2></A>
+
+<P>
+First install the above software packages
+and set all requisite environment variables
+(such as PATH, CLASSPATH, LD_LIBRARY_PATH)
+as explained in the documentation
+for the above software packages.
+
+<P>
+There are two versions
+of the CryptoStat Library distribution,
+an executable distribution
+and a source distribution.
+
+<P>
+<B>Executable distribution.</B>
+The executable distribution comes in a Java Archive (JAR) file
+named <TT>"cryptostat_<I>YYYYMMDD</I>.jar"</TT>,
+where <I>YYYYMMDD</I> are the year, month, and date.
+The executable distribution includes
+the CryptoStat Library class files only.
+To install the executable distribution,
+simply store the JAR file somewhere.
+You may wish to change the file name,
+say to <TT>"cryptostat.jar"</TT>.
+
+<P>
+The executable distribution JAR file
+includes compiled PTX files
+for the GPU kernel functions.
+You might need to recompile these on your system.
+If so, install the source distribution (see below),
+recompile the PTX files,
+and replace them in the JAR file.
+
+<P>
+<B>Source distribution.</B>
+The source distribution comes in a Java Archive (JAR) file
+named <TT>"cryptostatsrc_<I>YYYYMMDD</I>.jar"</TT>,
+where <I>YYYYMMDD</I> are the year, month, and date.
+The source distribution includes
+the CryptoStat Library class files,
+source files, and documentation files (Javadoc).
+To install the source distribution,
+just unpack the JAR file.
+The source distribution expands into a subdirectory
+named <TT>"CryptoStat"</TT>.
+If you already have a subdirectory of that name
+which you want to save,
+be sure to unpack the JAR file
+in some other directory.
+Documentation is stored under the directory
+<TT>"CryptoStat/doc"</TT>;
+point your HTML browser to that directory.
+Java source files and class files
+are stored under the directory
+<TT>"CryptoStat/lib"</TT>.
+
+<P>
+The source distribution
+includes CUDA source files
+for the GPU kernel functions
+as well as a script to compile them
+into PTX files.
+You might need to recompile these on your system.
+You might need to alter the compile script for your system.
+
+<P>
+<HR>
+<A NAME="usage"><H2>Usage</H2></A>
+
+<P>
+<B>Executable distribution.</B>
+When compiling and executing Java programs
+that use the CryptoStat Library,
+if you have installed the executable distribution,
+you must set your classpath
+to include the CryptoStat JAR file
+and the Parallel Java 2 JAR file.
+Here is an example of a command for the <TT>bash</TT> shell
+to set the classpath to the current directory
+plus the JAR files
+(of course, use the proper path names for your system):
+
+<PRE>
+export CLASSPATH=.:/home/fac/ark/public_html/cryptostat.jar:/home/fac/ark/public_html/pj2.jar
+</PRE>
+
+<P>
+Here is an example of a command for the <TT>csh</TT> shell
+to set the classpath to the current directory
+plus the JAR files:
+
+<PRE>
+setenv CLASSPATH .:/home/fac/ark/public_html/cryptostat.jar:/home/fac/ark/public_html/pj2.jar
+</PRE>
+
+<P>
+You must also set your Java load library path
+as described in the Javadoc
+for package edu.rit.gpu
+in the Parallel Java 2 Library.
+
+<P>
+<B>Source distribution.</B>
+When compiling and executing Java programs
+that use the CryptoStat Library,
+if you have installed the source distribution,
+you must set your classpath
+to include the top-level directory
+under which CryptoStat's Java class files are stored
+as well as the Parallel Java JAR file.
+You must also set your Java load library path
+as described in the Javadoc
+for package edu.rit.gpu
+in the Parallel Java 2 Library.
+
+<P>
+<B>Running CryptoStat.</B>
+To analyze a cryptographic function with CryptoStat,
+run the <A HREF="Analyze.html">Analyze</A> program
+on a GPU-accelerated CUDA-capable parallel computer,
+specifying the cryptographic function to be analyzed,
+the input generator object for a series of <I>A</I> inputs,
+the input generator object for a series of <I>B</I> inputs,
+the odds ratio test object for the desired randomness hypothesis,
+and the bit group object for the output bit groups to be tested.
+Repeat for various choices of generator objects,
+test objects, and bit group objects.
+
+<P>
+The CryptoStat Library implements these cryptographic functions:
+<BR>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<A HREF="edu/rit/aes/AES128.html">AES-128 block cipher</A>
+<BR>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<A HREF="edu/rit/aes/AES192.html">AES-192 block cipher</A>
+<BR>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<A HREF="edu/rit/aes/AES256.html">AES-256 block cipher</A>
+<BR>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<A HREF="edu/rit/sha1/SHA1.html">SHA-1 hash function</A>
+<BR>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<A HREF="edu/rit/sha2/SHA224.html">SHA-224 hash function</A>
+<BR>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<A HREF="edu/rit/sha2/SHA256.html">SHA-256 hash function</A>
+<BR>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<A HREF="edu/rit/sha2/SHA384.html">SHA-384 hash function</A>
+<BR>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<A HREF="edu/rit/sha2/SHA512.html">SHA-512 hash function</A>
+<BR>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<A HREF="edu/rit/sha2/SHA512_224.html">SHA-512/224 hash function</A>
+<BR>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<A HREF="edu/rit/sha2/SHA512_256.html">SHA-512/256 hash function</A>
+<BR>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<A HREF="edu/rit/sha3/SHA3_224.html">SHA3-224 hash function</A>
+<BR>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<A HREF="edu/rit/sha3/SHA3_256.html">SHA3-256 hash function</A>
+<BR>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<A HREF="edu/rit/sha3/SHA3_384.html">SHA3-384 hash function</A>
+<BR>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<A HREF="edu/rit/sha3/SHA3_512.html">SHA3-512 hash function</A>
+<BR>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<A HREF="edu/rit/sha3/SHAKE128.html">SHAKE-128 extensible output hash function</A>
+<BR>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<A HREF="edu/rit/sha3/SHAKE256.html">SHAKE-256 extensible output hash function</A>
+
+<P>
+The CryptoStat Library provides these input generator objects:
+<BR>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<A HREF="edu/rit/crst/Gray.html">Gray code inputs</A>
+<BR>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<A HREF="edu/rit/crst/OneOff.html">One-off inputs</A>
+<BR>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<A HREF="edu/rit/crst/Rand.html">Random inputs</A>
+<BR>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<A HREF="edu/rit/crst/Seq.html">Sequential inputs</A>
+<BR>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<A HREF="edu/rit/crst/Single.html">Single input</A>
+
+<P>
+The CryptoStat Library provides these input generator objects
+that perform transformations on input values:
+<BR>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<A HREF="edu/rit/crst/Add.html">Add a constant value</A>
+<BR>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<A HREF="edu/rit/crst/Complement.html">Complement all bits</A>
+<BR>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<A HREF="edu/rit/crst/Permute.html">Permute selected bits</A>
+<BR>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<A HREF="edu/rit/crst/Shift.html">Left-shift the bits</A>
+<BR>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<A HREF="edu/rit/crst/Xor.html">Exclusive-or a constant value</A>
+
+<P>
+The CryptoStat Library provides these input generator objects
+that combine two or more input value series together:
+<BR>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<A HREF="edu/rit/crst/Concatenate.html">Concatenated input series</A>
+<BR>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<A HREF="edu/rit/crst/Interleave.html">Interleaved input series</A>
+<BR>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<A HREF="edu/rit/crst/Paste.html">Pasted-together input series</A>
+
+<P>
+The CryptoStat Library provides these odds ratio test objects:
+<BR>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<A HREF="edu/rit/crst/Avalanche.html">Avalanche</A>
+<BR>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<A HREF="edu/rit/crst/Difference.html">Difference</A>
+<BR>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<A HREF="edu/rit/crst/Direct.html">Direct</A>
+
+<P>
+The CryptoStat Library provides these bit group objects:
+<BR>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<A HREF="edu/rit/crst/Adjacent.html">Groups of adjacent bits</A>
+<BR>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<A HREF="edu/rit/crst/Scattered.html">Groups of nonadjacent (scattered) bits</A>
+
+<P>
+<B>Extending CryptoStat.</B>
+You can add your own cryptographic function
+by writing a class that implements
+interface <A HREF="edu/rit/crst/Function.html">Function</A>,
+along with the appropriate GPU kernel module.
+For an example,
+see source files <TT>AES128.java</TT> and <TT>AES128.cu</TT>.
+
+<P>
+You can add your own input generator object
+by writing a class that extends
+class <A HREF="edu/rit/crst/Generator.html">Generator</A>
+or a subclass thereof.
+For an example, see source file <TT>Seq.java</TT>.
+
+<P>
+You can add your own odds ratio test object
+by writing a class that extends
+class <A HREF="edu/rit/crst/Test.html">Test</A>,
+along with the appropriate GPU kernel module.
+For an example,
+see source files <TT>Avalanche.java</TT> and <TT>Avalanche.cu</TT>.
+
+<P>
+You can add your own bit group object
+by writing a class that extends
+class <A HREF="edu/rit/crst/BitGroup.html">BitGroup</A>.
+For an example, see source file <TT>Adjacent.java</TT>.
+
+<P>
+<HR>
+<A NAME="license"><H2>License</H2></A>
+
+<P>
+The documentation files, Java source files, Java class files,
+and CUDA source files
+in the CryptoStat Library
+("The Library")
+are copyright &copy; 2016&ndash;2019
+by Alan Kaminsky.
+All rights reserved.
+For further information, contact the author, Alan Kaminsky,
+at ark<FONT SIZE="1" COLOR="\#FFFFFF">&shy;</FONT>&#64;<FONT SIZE="1" COLOR="\#FFFFFF">&shy;</FONT>cs.rit.edu.
+<P>
+The Library is free software; you can redistribute it and/or modify it under the terms of
+the GNU General Public License as published by the Free Software
+Foundation; either version 3 of the License, or (at your option) any later
+version.
+<P>
+The Library is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details.
+<P>
+A copy of the GNU General Public License
+is provided in the file <A HREF="doc-files/gpl.txt"><TT>gpl.txt</TT></A>.
+You may also obtain a copy of the GNU General Public License
+on the World Wide Web at
+<A HREF="http://www.gnu.org/licenses/gpl.html" TARGET="_top">http://www.gnu.org/licenses/gpl.html</A>.
+
+<P>
+<HR>
+<A NAME="history"><H2>Revision History</H2></A>
+
+<DL COMPACT>
+
+<P><DT>29-Apr-2019
+<DD>
+Added package edu.rit.sha3,
+authored by Aziel Shaw,
+with implementations of the SHA-3 hash functions
+and the SHAKE extensible output hash functions.
+
+<P><DT>15-Oct-2018
+<DD>
+Moved all classes and interfaces,
+except the main program classes,
+into packages
+edu.rit.crst,
+edu.rit.aes,
+edu.rit.sha1,
+edu.rit.sha2,
+and edu.rit.util.
+
+<P><DT>22-Feb-2018
+<DD>
+Major change in the odds ratio tests performed.
+CryptoStat nows does a "run test"
+and a "birthday test" on each series
+of output bit group values.
+The run test looks at patterns of increasing or decreasing values.
+The birthday test looks at whether
+a block of consecutive values
+contains a collision (a repeated value).
+
+<P><DT>30-Nov-2017
+<DD>
+Changed the Analyze and AnalyzeSweep programs
+to include the current working directory
+and the Java class path
+in the provenance printout.
+
+<P><DT>29-Nov-2017
+<DD>
+Changed the AnalyzeSweep program
+optionally to restart a series of analysis runs
+in the middle.
+
+<P><DT>26-Oct-2017
+<DD>
+Changed the Analyze program to omit certain portions of the analysis if there is
+only one A input value or only one B input value. Also changed it to print the
+overall log Bayes factors for each round, aggregated over all A and B inputs and
+all bit groups; the number of nonrandom rounds is determined from these overall
+log Bayes factors.
+Made the same changes to the AnalyzeSweep program.
+<P>
+In input generator class OneOff:
+Added the <TT>OneOff(N)</TT> constructor.
+<P>
+Added input generator classes Paste, Rand, and Single.
+<P>
+In utility class BigInt:
+Added the <TT>randomize(prng,B)</TT> method.
+
+<P><DT>09-Oct-2017
+<DD>
+Another extensive rewrite of the CryptoStat Library.
+
+</DL>
+
+</BODY>
+</HTML>

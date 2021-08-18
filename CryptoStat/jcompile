@@ -1,0 +1,23 @@
+#!/bin/bash
+SOURCE_HOME=$CRST_HOME/lib
+#PJ2_HOME=/media/storage/Projects/CryptoStat-Research/pj2/lib/
+JDK_HOME=/lib/jvm/default-java
+
+echo "Changing directories..."
+cd $SOURCE_HOME
+
+echo "Removing Java class files ..."
+find . -name '*.class' -exec rm '{}' ';'
+
+echo "Compiling Java source files..."
+$JDK_HOME/bin/javac -classpath $SOURCE_HOME:$PJ2_HOME \
+*.java \
+edu/rit/crst/*.java \
+edu/rit/aes/*.java \
+edu/rit/sha1/*.java \
+edu/rit/sha2/*.java \
+edu/rit/sha3/*.java \
+edu/rit/util/*.java \
+edu/rit/ctrl/*.java \
+
+

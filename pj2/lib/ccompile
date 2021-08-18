@@ -1,0 +1,5 @@
+#!/bin/bash
+
+echo "gcc -I/usr/lib/jvm/default-java/include -I/usr/lib/jvm/default-java/include/linux -I/usr/lib/cuda/include -I/opt/cuda/include -I/usr/local/dcs/jdk/include -I/usr/local/dcs/jdk/include/linux -I/usr/local/cuda/include -shared -fPIC -o libEduRitGpuCuda.so edu_rit_gpu_Cuda.c -lcuda"
+
+gcc -I/usr/lib/jvm/default-java/include -I/usr/lib/jvm/default-java/include/linux -I/usr/lib/cuda/include -I/opt/cuda/include -I/usr/local/dcs/jdk/include -I/usr/local/dcs/jdk/include/linux -I/usr/local/cuda/include -shared -fPIC -o libEduRitGpuCuda.so edu_rit_gpu_Cuda.c -lcuda
