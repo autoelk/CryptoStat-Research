@@ -3,4 +3,5 @@ export LD_LIBRARY_PATH=/media/storage/Projects/CryptoStat-Research/pj2:/media/st
 export GCCBINDIR=/usr/bin/
 export CRST_HOME=/media/storage/Projects/CryptoStat-Research/CryptoStat
 export PJ2_HOME=/media/storage/Projects/CryptoStat-Research/pj2/lib
-java pj2 AnalyzeSweep -v -nt=1024 "AES256()" Direct_A.txt Direct_B.txt "Direct()" BG.txt
+
+java pj2 Analyze -v "edu.rit.aes.AES256()" "edu.rit.crst.Seq(128)" "edu.rit.crst.Rand(128,1234)" "edu.rit.crst.Direct()" "edu.rit.crst.Adjacent(8)" 

@@ -1,0 +1,1 @@
+java pj2 AnalyzeSweep -nt=1024 "edu.rit.aes.AES128()" "/media/storage/Projects/CryptoStat-Research/AnalyzeSweep Example/A.txt" "/media/storage/Projects/CryptoStat-Research/AnalyzeSweep Example/B.txt" "edu.rit.crst.Direct()" "/media/storage/Projects/CryptoStat-Research/AnalyzeSweep Example/BG.txt"
