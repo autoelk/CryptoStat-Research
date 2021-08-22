@@ -1,0 +1,34 @@
+Generate Plaintext: 
+  dd bs=4000000 count=8000  if=/dev/zero of=/media/storage/plaintext
+
+Encrypt: 
+  key - 8d19c708c2fa60012c558d98454a2018e5c7bb0e62d05ff60972f10750279323
+
+  openssl enc -aes-256-ecb -pbkdf2 -nosalt -K 8d19c708c2fa60012c558d98454a2018e5c7bb0e62d05ff60972f10750279323 -in "/media/storage/Projects/CryptoStat-Research/plaintext" -out "/media/storage/Projects/CryptoStat-Research/ciphertext"
+  openssl enc -aes-256-cbc -pbkdf2 -nosalt -K 8d19c708c2fa60012c558d98454a2018e5c7bb0e62d05ff60972f10750279323 -iv 00000000000000000000000000000000 -in "/media/storage/Projects/CryptoStat-Research/plaintext" -out "/media/storage/Projects/CryptoStat-Research/ciphertext"
+  openssl enc -aes-256-ctr -pbkdf2 -nosalt -K 8d19c708c2fa60012c558d98454a2018e5c7bb0e62d05ff60972f10750279323 -iv 00000000000000000000000000000000 -in "/media/storage/Projects/CryptoStat-Research/plaintext" -out "/media/storage/Projects/CryptoStat-Research/ciphertext"
+  openssl enc -aes-256-ofb -pbkdf2 -nosalt -K 8d19c708c2fa60012c558d98454a2018e5c7bb0e62d05ff60972f10750279323 -iv 00000000000000000000000000000000 -in "/media/storage/Projects/CryptoStat-Research/plaintext" -out "/media/storage/Projects/CryptoStat-Research/ciphertext"
+
+NIST: 
+  ./assess 100000 (must be run from /media/storage/Projects CryptoStat-Research/sts-2.1.2)
+  Generator Options: 0
+  User Prescribed Input File: /media/storage/Projects/CryptoStat-Research/ciphertext
+  Statistical Tests: 1
+  Parameter Adjustments: 0
+  How many bit streams should be generated? 100
+  Input File Format: 1
+
+Dieharder: 
+  dieharder -a -g 201 -f /media/storage/Projects/CryptoStat-Research/ciphertext > "/home/storage/Projects/CryptoStat-Research/results/dieharder"
+
+CryptoStat: 
+  export CLASSPATH=/media/storage/Projects/CryptoStat-Research/CryptoStat/lib:/media/storage/Projects/CryptoStat-Research/pj2/lib
+  export LD_LIBRARY_PATH=/media/storage/Projects/CryptoStat-Research/pj2:/media/storage/Projects/CryptoStat-Research/pj2/lib
+  export GCCBINDIR=/usr/bin/
+  export CRST_HOME=/media/storage/Projects/CryptoStat-Research/CryptoStat
+  export PJ2_HOME=/media/storage/Projects/CryptoStat-Research/pj2/lib
+
+  sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 80 --slave /usr/bin/g++ g++ /usr/bin/g++-8 --slave /usr/bin/gcov gcov /usr/bin/gcov-8
+  (make sure that you are using gcc version 8 or less)
+  
+  java pj2 Analyze -v "edu.rit.aes.AES256()" "edu.rit.crst.Seq(128)" "edu.rit.crst.Rand(128,1234)" "edu.rit.crst.Direct()" "edu.rit.crst.Adjacent(8)" 
