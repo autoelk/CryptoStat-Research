@@ -19,7 +19,7 @@ NIST:
   Input File Format: 1
 
 Dieharder: 
-  dieharder -a -g 201 -f /media/storage/Projects/CryptoStat-Research/ciphertext > "/home/storage/Projects/CryptoStat-Research/results/dieharder"
+  dieharder -a -g 201 -f /media/storage/Projects/CryptoStat-Research/ciphertext > "/home/storage/Projects/CryptoStat-Research/results/Dieharder.txt"
 
 CryptoStat: 
   export CLASSPATH=/media/storage/Projects/CryptoStat-Research/CryptoStat/lib:/media/storage/Projects/CryptoStat-Research/pj2/lib
@@ -31,4 +31,13 @@ CryptoStat:
   sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 80 --slave /usr/bin/g++ g++ /usr/bin/g++-8 --slave /usr/bin/gcov gcov /usr/bin/gcov-8
   (make sure that you are using gcc version 8 or less)
   
-  java pj2 Analyze -v "edu.rit.aes.AES256()" "edu.rit.crst.Seq(128)" "edu.rit.crst.Rand(128,1234)" "edu.rit.crst.Direct()" "edu.rit.crst.Adjacent(8)" 
+  java pj2 Analyze -v -nt=1024 "edu.rit.aes.AES128()" "edu.rit.crst.Seq(256)" "edu.rit.crst.Rand(256,1234)" "edu.rit.crst.Direct()" "edu.rit.crst.Adjacent(8)" > "/media/storage/Projects/CryptoStat-Research/results/CryptoStat AES128.txt"
+  java pj2 Analyze -v -nt=1024 "edu.rit.aes.AES192()" "edu.rit.crst.Seq(256)" "edu.rit.crst.Rand(256,1234)" "edu.rit.crst.Direct()" "edu.rit.crst.Adjacent(8)" > "/media/storage/Projects/CryptoStat-Research/results/CryptoStat AES192.txt"
+  java pj2 Analyze -v -nt=1024 "edu.rit.aes.AES256()" "edu.rit.crst.Seq(256)" "edu.rit.crst.Rand(256,1234)" "edu.rit.crst.Direct()" "edu.rit.crst.Adjacent(8)" > "/media/storage/Projects/CryptoStat-Research/results/CryptoStat AES256.txt"
+  java pj2 Analyze -v -nt=1024 "edu.rit.sha1.SHA1()" "edu.rit.crst.Seq(256)" "edu.rit.crst.Rand(256,1234)" "edu.rit.crst.Direct()" "edu.rit.crst.Adjacent(8)" > "/media/storage/Projects/CryptoStat-Research/results/CryptoStat SHA1.txt"
+  java pj2 Analyze -v -nt=1024 "edu.rit.sha2.SHA256()" "edu.rit.crst.Seq(256)" "edu.rit.crst.Rand(256,1234)" "edu.rit.crst.Direct()" "edu.rit.crst.Adjacent(8)" > "/media/storage/Projects/CryptoStat-Research/results/CryptoStat SHA256.txt"
+  java pj2 Analyze -v -nt=1024 "edu.rit.sha2.SHA512()" "edu.rit.crst.Seq(256)" "edu.rit.crst.Rand(256,1234)" "edu.rit.crst.Direct()" "edu.rit.crst.Adjacent(8)" > "/media/storage/Projects/CryptoStat-Research/results/CryptoStat SHA512.txt"
+  java pj2 Analyze -v -nt=640 "edu.rit.sha3.SHA3_256()" "edu.rit.crst.Seq(256)" "edu.rit.crst.Rand(256,1234)" "edu.rit.crst.Direct()" "edu.rit.crst.Adjacent(8)" > "/media/storage/Projects/CryptoStat-Research/results/CryptoStat SHA3_256.txt"
+  java pj2 Analyze -v -nt=640 "edu.rit.sha3.SHA3_512()" "edu.rit.crst.Seq(256)" "edu.rit.crst.Rand(256,1234)" "edu.rit.crst.Direct()" "edu.rit.crst.Adjacent(8)" > "/media/storage/Projects/CryptoStat-Research/results/CryptoStat SHA3_512.txt"
+  java pj2 Analyze -v -nt=384 "edu.rit.sha3.SHAKE128()" "edu.rit.crst.Seq(256)" "edu.rit.crst.Rand(256,1234)" "edu.rit.crst.Direct()" "edu.rit.crst.Adjacent(8)" > "/media/storage/Projects/CryptoStat-Research/results/CryptoStat SHAKE128.txt"
+  java pj2 Analyze -v -nt=384 "edu.rit.sha3.SHAKE256()" "edu.rit.crst.Seq(256)" "edu.rit.crst.Rand(256,1234)" "edu.rit.crst.Direct()" "edu.rit.crst.Adjacent(8)" > "/media/storage/Projects/CryptoStat-Research/results/CryptoStat SHAKE256.txt"
