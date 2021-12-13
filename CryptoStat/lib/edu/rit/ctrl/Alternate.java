@@ -2,21 +2,24 @@ package edu.rit.ctrl;
 
 import edu.rit.crst.Function;
 import edu.rit.gpu.Gpu;
+import edu.rit.util.Random;
 import edu.rit.util.BigInt;
 import java.io.IOException;
 
-public class Zeros extends Function {
+public class Alternate extends Function {
 
-  public Zeros() {
+  private int[] W = new int [16];
+ 
+  public Alternate() {
     super();
   }
 
   public String constructor() {
-    return "edu.rit.ctrl.Zeros()";
+    return "edu.rit.ctrl.Alternate()";
   }
 
   public String description() {
-    return "a function that produces zeroes, non-random sequence";
+    return "a function that produces alternating rounds of zeroes and random sequences";
   }
 
   // input A
@@ -53,15 +56,9 @@ public class Zeros extends Function {
 
   // implementation for function
   public void evaluate(BigInt A, BigInt B, BigInt[] C) {
-    BigInt zero = new BigInt(128);
-    zero.assign(0);
-
-    for (int i = 0; i <= 9; ++i) {
-      C[i] = zero; // sets entire BigInt to 0 without unpacking it
-    }
   }
 
   protected String moduleName() {
-    return "edu/rit/ctrl/Zeros.ptx";
+    return "edu/rit/ctrl/Alternate.ptx";
   }
 }

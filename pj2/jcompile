@@ -1,7 +1,7 @@
 #!/bin/bash
-export PJ2_HOME=/home/ark/Projects/pj2
+export PJ2_HOME=/media/storage/Projects/CryptoStat-Research/pj2/
 SOURCE_HOME=$PJ2_HOME/lib
-JDK_HOME=/opt/jdk1.7
+JDK_HOME=/usr/lib/jvm/default-java
 
 echo "Changing directories..."
 cd $SOURCE_HOME

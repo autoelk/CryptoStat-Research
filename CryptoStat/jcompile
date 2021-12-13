@@ -19,5 +19,3 @@ edu/rit/sha2/*.java \
 edu/rit/sha3/*.java \
 edu/rit/util/*.java \
 edu/rit/ctrl/*.java \
-
-

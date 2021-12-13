@@ -63,3 +63,5 @@ cd $CRST_HOME/lib/edu/rit/ctrl/
 rm -f *.ptx
 echo "Zeros.cu"
 nvcc --compiler-bindir=$GCCBINDIR -ptx -arch compute_30 -o Zeros.ptx Zeros.cu
+echo "Alternate.cu"
+nvcc --compiler-bindir=$GCCBINDIR -ptx -arch compute_30 -o Alternate.ptx Alternate.cu
